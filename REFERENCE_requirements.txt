@@ -1,0 +1,11 @@
+fastapi==0.109.0
+uvicorn==0.27.0
+python-multipart==0.0.6
+PyMuPDF>=1.24.0
+python-dotenv==1.0.0
+pdf2docx
+python-docx
+docx2pdf
+WeasyPrint
+xhtml2pdf
+mammoth
