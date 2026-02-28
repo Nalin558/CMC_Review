@@ -1,0 +1,56 @@
+body {
+
+  background-color: #f3f4f6; /* Tailwind gray-100-ish */
+}
+/* Subtle animated blob used in hero cards */
+@keyframes blob {
+  0% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(-8px, 8px) scale(1.03); }
+  66% { transform: translate(8px, -8px) scale(0.97); }
+  100% { transform: translate(0,0) scale(1); }
+}
+.animate-blob {
+  animation: blob 8s ease-in-out infinite;
+}
+
+/* Simple fade-in used for panels */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-in-up {
+  animation: fadeInUp 0.6s ease both;
+}
+
+/* Card hover glow */
+.card-glow {
+  box-shadow: 0 8px 30px rgba(99,102,241,0.06);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+.card-glow:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 30px 80px rgba(99,102,241,0.12);
+}
+
+/* Interactive expand on hover for content cards */
+.interactive-card {
+  transition: transform 180ms ease, box-shadow 180ms ease;
+  cursor: pointer;
+}
+.interactive-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 22px 40px rgba(2,6,23,0.06);
+}
+
+/* Small shimmer for headings */
+.shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0.06) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.8s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

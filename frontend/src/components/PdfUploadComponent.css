@@ -1,0 +1,345 @@
+/* PDF Upload Component Styles */
+
+.pdf-upload-container {
+  width: 100%;
+  padding: 0;
+}
+
+.pdf-upload-wrapper {
+  width: 100%;
+}
+
+.pdf-upload-area {
+  position: relative;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  padding: 80px 40px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  backdrop-filter: blur(20px);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 
+              inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  border: 2px dashed rgba(99, 102, 241, 0.3);
+  overflow: hidden;
+}
+
+.pdf-upload-area::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.pdf-upload-area.dragging {
+  border-color: rgba(99, 102, 241, 0.8);
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e1b4b 50%, #1e3a8a 100%);
+  box-shadow: 0 0 50px rgba(99, 102, 241, 0.5),
+              0 20px 60px rgba(0, 0, 0, 0.4),
+              inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  transform: scale(1.02);
+}
+
+.pdf-upload-area.loading {
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+.upload-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.upload-icon-wrapper {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(139, 92, 246, 0.3));
+  border: 2px solid rgba(99, 102, 241, 0.5);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: float 3s ease-in-out infinite;
+  box-shadow: 0 0 30px rgba(99, 102, 241, 0.2),
+              inset 0 1px 2px rgba(255, 255, 255, 0.1);
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.upload-icon-svg {
+  width: 56px;
+  height: 56px;
+  stroke: #818cf8;
+  color: #818cf8;
+  filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.6));
+}
+
+.upload-text-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.upload-title {
+  margin: 0;
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #e0e7ff, #f3e8ff, #e0e7ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 10px rgba(99, 102, 241, 0.2);
+}
+
+.upload-description {
+  color: #cbd5e1;
+  font-size: 16px;
+  margin: 0;
+  max-width: 450px;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.file-input {
+  display: none;
+}
+
+.browse-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+  color: white;
+  padding: 14px 36px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  font-size: 16px;
+  box-shadow: 0 8px 32px rgba(99, 102, 241, 0.4),
+              0 0 20px rgba(139, 92, 246, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.browse-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.browse-button:hover::before {
+  left: 100%;
+}
+
+.browse-button:hover {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #c026d3 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 48px rgba(99, 102, 241, 0.6),
+              0 0 30px rgba(139, 92, 246, 0.3);
+}
+
+.browse-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.button-icon {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+}
+
+.button-icon.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.file-info {
+  color: #94a3b8;
+  font-size: 13px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.info-icon {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  opacity: 0.7;
+}
+
+/* Alert Styles */
+
+.alert {
+  padding: 16px 20px;
+  border-radius: 12px;
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 14px;
+  border: 1px solid;
+  animation: slideIn 0.3s ease;
+  backdrop-filter: blur(16px);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.alert-icon-emoji {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.alert-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.alert-title {
+  font-weight: 700;
+  display: block;
+}
+
+.alert-message {
+  font-weight: 500;
+  opacity: 0.9;
+  display: block;
+}
+
+.alert-error {
+  background: linear-gradient(135deg, rgba(127, 29, 29, 0.3), rgba(127, 29, 29, 0.15));
+  color: #fca5a5;
+  border-color: rgba(220, 38, 38, 0.5);
+  box-shadow: 0 0 20px rgba(220, 38, 38, 0.1);
+}
+
+.alert-success {
+  background: linear-gradient(135deg, rgba(20, 83, 45, 0.3), rgba(20, 83, 45, 0.15));
+  color: #86efac;
+  border-color: rgba(34, 197, 94, 0.5);
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.1);
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .pdf-upload-area {
+    padding: 50px 24px;
+    min-height: 320px;
+  }
+
+  .upload-title {
+    font-size: 24px;
+  }
+
+  .upload-description {
+    font-size: 14px;
+  }
+
+  .upload-icon-wrapper {
+    width: 80px;
+    height: 80px;
+  }
+
+  .upload-icon-svg {
+    width: 48px;
+    height: 48px;
+  }
+
+  .browse-button {
+    padding: 12px 28px;
+    font-size: 14px;
+  }
+
+  .file-info {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pdf-upload-area {
+    padding: 40px 16px;
+    min-height: 280px;
+  }
+
+  .upload-title {
+    font-size: 20px;
+  }
+
+  .upload-description {
+    font-size: 13px;
+  }
+
+  .upload-icon-wrapper {
+    width: 70px;
+    height: 70px;
+  }
+
+  .upload-icon-svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .browse-button {
+    padding: 10px 20px;
+    font-size: 13px;
+    gap: 8px;
+  }
+}
